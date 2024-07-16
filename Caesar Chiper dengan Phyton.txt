@@ -1,0 +1,51 @@
+def caesar_encrypt(text, shift):
+    encrypted_text = ""
+    for char in text:
+        if char.isalpha():
+            shifted = ord(char) + shift
+            if char.islower():
+                if shifted > ord('z'):
+                    shifted -= 26
+                elif shifted < ord('a'):
+                    shifted += 26
+            elif char.isupper():
+                if shifted > ord('Z'):
+                    shifted -= 26
+                elif shifted < ord('A'):
+                    shifted += 26
+            encrypted_text += chr(shifted)
+        else:
+            encrypted_text += char
+    return encrypted_text
+
+def caesar_decrypt(text, shift):
+    decrypted_text = ""
+    for char in text:
+        if char.isalpha():
+            shifted = ord(char) - shift
+            if char.islower():
+                if shifted > ord('z'):
+                    shifted -= 26
+                elif shifted < ord('a'):
+                    shifted += 26
+            elif char.isupper():
+                if shifted > ord('Z'):
+                    shifted -= 26
+                elif shifted < ord('A'):
+                    shifted += 26
+            decrypted_text += chr(shifted)
+        else:
+            decrypted_text += char
+    return decrypted_text
+
+def main():
+    text = input("Masukkan teks: ")
+    shift = int(input("Masukkan jumlah shift: "))
+    encrypted_text = caesar_encrypt(text, shift)
+    print("Teks terenkripsi:", encrypted_text)
+    decrypted_text = caesar_decrypt(encrypted_text, shift)
+    print("Teks terdekripsi:", decrypted_text)
+
+if __name__ == "__main__":
+    main()
+
